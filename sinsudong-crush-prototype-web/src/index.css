@@ -1,0 +1,23 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css);
+@import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
+
+
+
+* { font-family: 'NanumSquareRound', 'Sans-serif';
+    font-weight: 700; }
+
+    html, body {
+      overflow-x: hidden;
+      overflow-y : auto;
+      -webkit-overflow-scrolling : touch;
+      max-width : 100%;
+      min-height: 100vh
+      
+    }
+    button:focus { outline:0 !important; }
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}

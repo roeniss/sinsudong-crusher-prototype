@@ -1,0 +1,18 @@
+@media (min-width: 320px) and (max-width : 374px){
+    .banner-div{
+        vertical-align: middle;
+    }
+}
+
+@media (min-width : 375px) and (max-width: 576px){
+    .banner-div{
+        vertical-align: middle;
+    }
+}
+
+@media (min-width: 577px){
+    .banner-div{
+        vertical-align: middle;
+    }
+}
+

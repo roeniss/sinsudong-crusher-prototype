@@ -1,0 +1,17 @@
+@import '~antd/dist/antd.css';
+
+.signup-title-col{
+	margin-top : 20vh;
+	margin-bottom: 5vh;
+}
+
+.signup-title{
+	text-align: center;
+	font-weight: 700;
+	color : white;
+	background: black;
+}
+
+.signup-button-col{
+	margin-bottom: 5vh;
+}

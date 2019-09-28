@@ -1,0 +1,34 @@
+@import '~antd/dist/antd.css';
+
+.ant-modal-title {
+    font-family: 'NanumSquareRound', 'Sans-serif';
+    font-weight: 700;
+    font-size : 20px;
+    text-align: center;
+}
+
+.signIn{
+    overflow-y : auto;
+    max-width : 300px;
+}
+
+
+.login-form {
+    max-width: 280px;
+  }
+  .login-form-forgot {
+    float: right;
+  }
+  .login-form-button {
+    width: 100%;
+  }
+
+.warning{
+  margin-top :-32px;
+  margin-bottom : -15px;
+}
+
+.warning h1{
+  font-size : 10px;
+  color : orangered;
+}
