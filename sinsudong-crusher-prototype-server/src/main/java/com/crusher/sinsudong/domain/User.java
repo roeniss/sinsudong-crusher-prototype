@@ -12,11 +12,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userIdx;
 
+    private String name;
     private String password;
     private String email;
     private String photoUrl;

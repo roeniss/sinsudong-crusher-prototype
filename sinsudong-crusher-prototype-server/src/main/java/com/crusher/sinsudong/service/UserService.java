@@ -1,7 +1,11 @@
 package com.crusher.sinsudong.service;
 
+
 import com.crusher.sinsudong.domain.User;
+import com.crusher.sinsudong.domain.UserCharacter;
 import com.crusher.sinsudong.model.DefaultRes;
+import com.crusher.sinsudong.model.SignUpReq;
+import com.crusher.sinsudong.repository.UserCharacterRepository;
 import com.crusher.sinsudong.repository.UserRepository;
 import com.crusher.sinsudong.utils.AES256Util;
 import com.crusher.sinsudong.utils.StatusCode;
@@ -11,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 /**
- * Created By yw on 2019-09-19.
+ * Created By yw on 2019-09-25.
  */
 
 @Slf4j
@@ -19,16 +23,18 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserCharacterRepository userCharacterRepository;
 
-    private final S3FileUploadService s3FileUploadService;
-
-    public UserService(final UserRepository userRepository, final S3FileUploadService s3FileUploadService) {
+    public UserService(final UserRepository userRepository,
+                       final UserCharacterRepository userCharacterRepository) {
         this.userRepository = userRepository;
-        this.s3FileUploadService = s3FileUploadService;
+        this.userCharacterRepository = userCharacterRepository;
     }
 
     /**
-     * 내 게시물 조회
+     * 마이 페이지 조회
+     * 내가 스크랩 한 글 갯수
+     * 내 피드들 조회
      * @param userIdx
      * @return
      */
@@ -40,18 +46,24 @@ public class UserService {
 
     /**
      * 회원 정보 저장
-     * @param user
+     * @param SignUpReq signUpReq
      * @return
      */
-    public DefaultRes saveUser(final User user){
+    public DefaultRes saveUser(final SignUpReq signUpReq){
         try {
-            AES256Util aes256Util = new AES256Util("MOJI-SERVER-ENCRYPT-TEST");
+            User user = signUpReq.getUser();
+            UserCharacter userCharacter = signUpReq.getUserCharacter();
+
+            AES256Util aes256Util = new AES256Util("SINSUDONG-SERVER-ENCRYPT");
             user.setPassword(aes256Util.encrypt(user.getPassword()));
             userRepository.save(user);
+
+            userCharacter.setUserIdx(user.getUserIdx());
+            userCharacterRepository.save(userCharacter);
             return DefaultRes.res(StatusCode.CREATED, "회원 가입 완료");
         } catch (Exception e) {
             System.out.println(e);
-            return DefaultRes.res(StatusCode.DB_ERROR, "회원 가입 실패");
+            return DefaultRes.res(StatusCode.DB_ERROR, "데이터베이스 에러");
         }
     }
 
@@ -62,7 +74,6 @@ public class UserService {
      */
     public DefaultRes validateEmail(final String email) {
         Optional<User> user = userRepository.findByEmail(email);
-        return user.map(value -> DefaultRes.res(StatusCode.BAD_REQUEST, "중복된 이메일입니다.", value)).orElseGet(() -> DefaultRes.res(StatusCode.OK, "사용 가능 합니다."));
+        return user.map(value -> DefaultRes.res(StatusCode.BAD_REQUEST, "중복된 이메일입니다.")).orElseGet(() -> DefaultRes.res(StatusCode.OK, "사용 가능 합니다."));
     }
 }
-
