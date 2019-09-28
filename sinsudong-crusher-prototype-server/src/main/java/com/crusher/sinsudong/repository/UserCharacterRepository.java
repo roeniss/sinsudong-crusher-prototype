@@ -1,6 +1,5 @@
 package com.crusher.sinsudong.repository;
 
-import com.crusher.sinsudong.domain.User;
 import com.crusher.sinsudong.domain.UserCharacter;
 import org.springframework.data.jpa.repository.JpaRepository;
 
