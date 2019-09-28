@@ -8,6 +8,9 @@
 
 본 레포지토리는 1조 신수동크러셔의 **프로로타이핑**(Prototyping) 레포지토리이며 다음과 같은 기능들을 구현하였습니다.
 
+## WEB URL
+http://sinsudong-crush.s3-website.ap-northeast-2.amazonaws.com/
+
 ### 기능 N: A+ 받는 치트키 사용
 
 (이미지 한 두장, 가급적이면 gif로 할 예정)
@@ -17,4 +20,6 @@ A 화면에서 x, y, z를 입력한 후 등록 버튼을 누르면 B 화면으�
 ### 개발 스택
 
 - Java / Spring
+- MySQL
+- React.js
 - 향후 추가
