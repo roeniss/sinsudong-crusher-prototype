@@ -45,6 +45,16 @@ public class UserController {
         }
     }
 
+    @GetMapping("/users")
+    public ResponseEntity<DefaultRes> getAllUsers() {
+        try {
+            return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/users/mypage")
     public ResponseEntity<DefaultRes> getUser(final int userIdx) {
         try {

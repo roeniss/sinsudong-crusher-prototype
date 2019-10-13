@@ -156,15 +156,17 @@ class NavigationBar extends Component{
         return (          
             <Row> 
                     <NavBar collapseOnSelect bg="dark" variant="dark" fixed="top">
-                            <Col span={4} offset={10}>
+                            <Col xs={{span : 4, offset : 0}} xl={{span : 4, offset : 0}}
+                            lg={{span : 4, offset : 10}} xl={{span : 4, offset : 10}}>
                             <NavBar.Brand>
                                 <Link onClick={() => animateScrollTo(0, this.state.elementTop)} to= "/" className = "title" style={{ textDecoration: 'none', color: 'black' }}>
                                   <h1 class="nav-title">신수동 크러셔</h1>
                                 </Link>
                             </NavBar.Brand>                           
                             </Col>
-                            <Col span={6} offset={4}>
-                            <NavBar.Collapse>
+                            <Col xs={{span : 12, offset : 8}} sm={{span : 12, offset : 8}} 
+                            lg={{span : 6, offset : 4}} xl={{span : 6, offset : 4}}>
+                            <NavBar.Collapse className="navbar-collapse">
                                 {this.state.userNav}
                                 <SignIn modalVisible={modal1Visible}
                                         setModalVisible={setModal1Visible}

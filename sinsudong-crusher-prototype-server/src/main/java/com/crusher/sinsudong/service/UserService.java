@@ -5,6 +5,7 @@ import com.crusher.sinsudong.domain.User;
 import com.crusher.sinsudong.domain.UserCharacter;
 import com.crusher.sinsudong.model.DefaultRes;
 import com.crusher.sinsudong.model.SignUpReq;
+import com.crusher.sinsudong.model.UserRes;
 import com.crusher.sinsudong.repository.UserCharacterRepository;
 import com.crusher.sinsudong.repository.UserRepository;
 import com.crusher.sinsudong.utils.AES256Util;
@@ -12,6 +13,8 @@ import com.crusher.sinsudong.utils.StatusCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -42,6 +45,22 @@ public class UserService {
         final Optional<User> user = userRepository.findById(userIdx);
         return user.map(value -> DefaultRes.res(StatusCode.OK, "사용자 정보 조회 완료", value))
                 .orElseGet(() -> DefaultRes.res(StatusCode.NOT_FOUND, "사용자를 찾을 수 없습니다."));
+    }
+
+
+    public DefaultRes<List<UserRes>> findAllUsers() {
+        final List<User> users = userRepository.findAll();
+        final List<UserRes> userResList = new ArrayList<>();
+
+        for (User user: users) {
+            if(userCharacterRepository.findByUserIdx(user.getUserIdx()).isPresent()){
+                UserRes userRes = new UserRes();
+                userRes.setUser(user);
+                userRes.setUserCharacter(userCharacterRepository.findByUserIdx(user.getUserIdx()).get());
+                userResList.add(userRes);
+            }
+        }
+        return DefaultRes.res(StatusCode.OK, "사용자 정보 조회 완료", userResList);
     }
 
     /**

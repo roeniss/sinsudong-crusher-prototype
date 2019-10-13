@@ -257,15 +257,16 @@ class SignUp extends Component {
         <NavbarComponent></NavbarComponent>
         <Row className="signup-title-col">
           <Col offset={3} span={18}>
-            <Steps current={current} onChange={this.onChange}>
+            {this.state.current != 3 ? <Steps current={current} onChange={this.onChange}>
               <Step title="계정 정보 입력" description="회원 가입 정보" />
               <Step title="개인 기본 정보 입력" description="추천 서비스를 위한 조사" />
               <Step title="선호 여행 스타일 입력" description="추천 서비스를 위한 조사" />
-            </Steps>
+            </Steps> : null}
           </Col>
         </Row>
         <Row>
-          <Col offset={8} span={8}>
+          <Col xs={{offset : 4, span : 16}} sm={{offset : 4, span : 16}} 
+          lg={{offset : 8, span : 8}} xl={{offset : 8, span : 8}}>
             {this.state.current == 0 ?
               <Form className="signup-form"
                 {...formItemLayout}>
@@ -493,7 +494,9 @@ class SignUp extends Component {
           </Col>
         </Row>
         <Row>
-          <Col className="signup-button-col" offset={15} span={6}>
+          <Col className="signup-button-col" 
+          xs={{offset : 17, span : 6}} sm={{offset : 15, span : 6}}
+          lg={{offset : 15, span : 6}} xl={{offset : 15, span : 6}}>
             {this.state.current == 0 ?
               <Button type="primary" htmlType="submit" onClick={(e) => {
                 if (this.state.status == "error") {

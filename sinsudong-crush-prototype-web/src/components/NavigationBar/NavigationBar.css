@@ -1,6 +1,19 @@
-.nav-title{
-    font-size : 5vh;
-    margin : auto;
-    font-weight : 600;
-    color : white;
+@media (max-width: 600px) {
+    .nav-title{
+        font-size : 3vh;
+        margin : auto;
+        font-weight : 600;
+        color : white;
+    }
+    .navbar-collapse{
+        font-size: 1.2vh;
+    }
+}
+@media (min-width: 601px) {
+    .nav-title{
+        font-size : 5vh;
+        margin : auto;
+        font-weight : 600;
+        color : white;
+    }
 }
